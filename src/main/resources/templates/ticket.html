@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Ticket</title>
+</head>
+
+<body>
+<div th:if="${ticket==null}">
+    <div>There is no ticket with such id</div>
+</div>
+<div th:unless="${ticket==null}">
+    <h2>
+        <p><span>Ticket:</span></p>
+        <p><span th:text="'ID: ' + ${ticket.id}"></span></p>
+        <p><span th:text="'Event id: ' + ${ticket.eventId}"></span></p>
+        <p><span th:text="'User id: ' + ${ticket.userId}"></span></p>
+        <p><span th:text="'Category: ' + ${ticket.category}"></span></p>
+        <p><span th:text="'Place: ' + ${ticket.place}"></span></p>
+    </h2>
+</div>
+</body>
+</html>

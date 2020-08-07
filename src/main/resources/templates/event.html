@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Event</title>
+</head>
+
+<body>
+<div th:if="${event==null}">
+    <div>There is no event with such id</div>
+</div>
+<div th:unless="${event==null}">
+    <h2>
+        <p><span>Event:</span></p>
+        <p><span th:text="'ID: ' + ${event.id}"></span></p>
+        <p><span th:text="'Title: ' + ${event.title}"></span></p>
+        <p><span th:text="'Date: ' + ${#dates.formatISO(event.date)}"></span></p>
+    </h2>
+</div>
+</body>
+</html>

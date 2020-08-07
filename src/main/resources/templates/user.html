@@ -1,0 +1,21 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>User</title>
+</head>
+
+<body>
+<div th:if="${user==null}">
+    <div>There is no user with such id</div>
+</div>
+<div th:unless="${user==null}">
+    <h2>
+        <p><span>User:</span></p>
+        <p><span th:text="'ID: ' + ${user.id}"></span></p>
+        <p><span th:text="'Name: ' + ${user.name}"></span></p>
+        <p><span th:text="'Email: ' + ${user.email}"></span></p>
+    </h2>
+</div>
+</body>
+</html>

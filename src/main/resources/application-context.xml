@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="
+           http://www.springframework.org/schema/beans
+           http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
+           http://www.springframework.org/schema/context
+           http://www.springframework.org/schema/context/spring-context-3.1.xsd
+           http://www.springframework.org/schema/util
+           http://www.springframework.org/schema/util/spring-util-3.1.xsd">
+    <context:annotation-config/>
+
+    <context:property-placeholder location="classpath:payload.properties"/>
+
+    <util:map id="storage" map-class="java.util.concurrent.ConcurrentHashMap"/>
+
+    <util:map id="entityClassMap" map-class="java.util.concurrent.ConcurrentHashMap">
+        <entry key="event" value="com.epam.cdp.module4.homework1.entity.EventEntity"/>
+        <entry key="ticket" value="com.epam.cdp.module4.homework1.entity.TicketEntity"/>
+        <entry key="user" value="com.epam.cdp.module4.homework1.entity.UserEntity"/>
+    </util:map>
+
+    <bean class="com.epam.cdp.module4.homework1.service.DataLoaderForMapStorage"
+          p:payloadFileName="${payload.path}"
+          p:datePattern="${pattern.date}"
+          p:entityClassMap-ref="entityClassMap"/>
+
+    <!-- Data access objects -->
+    <bean id="eventDao" class="com.epam.cdp.module4.homework1.dao.EventDao" autowire="byType"
+          p:storage-ref="storage"/>
+    <bean id="ticketDao" class="com.epam.cdp.module4.homework1.dao.TicketDao" autowire="byType"
+          p:storage-ref="storage"/>
+    <bean id="userDao" class="com.epam.cdp.module4.homework1.dao.UserDao" autowire="byType"
+          p:storage-ref="storage"/>
+
+    <!-- Services -->
+    <bean id="eventService" class="com.epam.cdp.module4.homework1.service.impl.EventServiceImpl" autowire="byType"/>
+    <bean id="ticketService" class="com.epam.cdp.module4.homework1.service.impl.TicketServiceImpl" autowire="byType"/>
+    <bean id="userService" class="com.epam.cdp.module4.homework1.service.impl.UserServiceImpl" autowire="byType"/>
+
+    <!-- Facades -->
+    <bean id="bookingFacade" class="com.epam.cdp.module4.homework1.facade.impl.BookingFacadeImpl">
+        <constructor-arg ref="eventService"/>
+        <constructor-arg ref="ticketService"/>
+        <constructor-arg ref="userService"/>
+    </bean>
+
+</beans>

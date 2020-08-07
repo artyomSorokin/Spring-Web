@@ -1,0 +1,59 @@
+{
+  "event": [
+    {
+      "id": 1,
+      "title": "Metallica concert",
+      "date": "10-09-2019"
+    },
+    {
+      "id": 2,
+      "title": "Pink Floyd concert",
+      "date": "10-10-2019"
+    },
+    {
+      "id": 3,
+      "title": "Deep Purple concert",
+      "date": "10-11-2019"
+    }
+  ],
+  "ticket": [
+    {
+      "id": 1,
+      "eventId": 1,
+      "userId": 1,
+      "category": "PREMIUM",
+      "place": 1
+    },
+    {
+      "id": 2,
+      "eventId": 3,
+      "userId": 2,
+      "category": "BAR",
+      "place": 2
+    },
+    {
+      "id": 3,
+      "eventId": 1,
+      "userId": 2,
+      "category": "STANDARD",
+      "place": 3
+    }
+  ],
+  "user": [
+    {
+      "id": 1,
+      "name": "Vasyl_Sokolov",
+      "email": "vasyl_sokolov@epam.com"
+    },
+    {
+      "id": 2,
+      "name": "Petro_Kravchyk",
+      "email": "petro_kravchyk@epam.com"
+    },
+    {
+      "id": 3,
+      "name": "Ivan_Ben",
+      "email": "iven_ben@epam.com"
+    }
+  ]
+}

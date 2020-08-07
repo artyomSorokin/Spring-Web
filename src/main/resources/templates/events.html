@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Events</title>
+</head>
+
+<body>
+<h2>
+    <p><span>Events</span></p>
+</h2>
+<table border="4">
+    <tr>
+        <td>ID</td>
+        <td>Title</td>
+        <td>Date</td>
+        <td>Ticket price</td>
+    </tr>
+    <th:block th:each="event : ${events}">
+        <tr>
+            <td th:text="${event.id}"></td>
+            <td th:text="${event.title}"></td>
+            <p><span th:text="'Date: ' + ${#dates.formatISO(event.date)}"></span></p>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>
